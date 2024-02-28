@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   axios:
     specifier: ^1.2.2
@@ -1004,5 +1008,4 @@ packages:
   file:src/usdpl:
     resolution: {directory: src/usdpl, type: directory}
     name: usdpl-front
-    version: 0.7.0
     dev: false
