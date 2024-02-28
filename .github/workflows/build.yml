@@ -83,14 +83,14 @@ jobs:
               cp -r ./tmp/smartdns ./release/tomoon/bin/
               cp -r ./tomoon-web/dist ./release/tomoon/web
               cd ./release 
-              zip -r tomoon-${{ env.RELEASE_VERSION }}.zip tomoon
+              zip -r tomoon-${{ github.ref_name }}.zip tomoon
               cd ..
 
       - name: Publish Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: tomoon-${{ env.RELEASE_VERSION }}
-          path: ./release/tomoon-${{ env.RELEASE_VERSION }}.zip
+          name: tomoon-${{ github.ref_name }}
+          path: ./release/tomoon-${{ github.ref_name }}.zip
 
   publish:
     if: startsWith(github.ref, 'refs/tags/v')
@@ -112,8 +112,8 @@ jobs:
       - name: publish to github release
         uses: softprops/action-gh-release@v1
         with:
-          files: /tmp/artifacts/tomoon-${{ env.RELEASE_VERSION }}.zip
-          tag_name: ${{ github.ref }}
-          name: Release ${{ github.ref }}
+          files: /tmp/artifacts/tomoon-${{ github.ref_name }}/tomoon-${{ github.ref_name }}.zip
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
           draft: false
           prerelease: contains(github.ref, 'pre') || contains(github.ref, '.ci')
