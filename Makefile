@@ -35,6 +35,19 @@ update-frontend-lib: ## Update decky-frontend-lib
 build-front: ## Build frontend
 	@echo "+ $@"
 	@pnpm run build
+	@$(MAKE) build-front-sub
+	@$(MAKE) copy-file
+
+build-front-sub:
+	@echo "+ $@"
+	@npm --prefix ./tomoon-web run build
+	@mkdir -p ./web
+	@cp -r ./tomoon-web/dist/* ./web
+
+copy-file:
+	@echo "+ $@"
+	@cp -r ./tmp/core ./bin/
+	@cp -r ./tmp/smartdns ./bin/
 
 build-back: ## Build backend
 	@echo "+ $@"
@@ -59,6 +72,10 @@ deploy-steamdeck: ## Deploy plugin build to steamdeck
 		--exclude='node_modules/' \
 		--exclude='.pnpm-store/' \
 		--exclude='src/' \
+		--exclude='yacd' . \
+		--exclude='tomoon-web/' \
+		--exclude='backend/' \
+		--exclude='tmp/' \
 		--exclude='*.log' \
 		--exclude='.gitignore' . \
 		--exclude='.idea' . \
