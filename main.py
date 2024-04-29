@@ -13,6 +13,9 @@ class Plugin:
     async def _main(self):
         logger = setup_logger()
         logger.info("Start Tomoon.")
+
+        dashboard.set_default_dashboard()
+
         os.system('chmod -R a+x ' + decky_plugin.DECKY_PLUGIN_DIR)
         # 切换到工作目录
         os.chdir(decky_plugin.DECKY_PLUGIN_DIR)
@@ -42,3 +45,17 @@ class Plugin:
     
     async def get_dashboard_list(self):
         return dashboard.get_dashboard_list()
+    
+    async def get_current_dashboard(self):
+        try:
+            return dashboard.get_current_dashboard()
+        except Exception as e:
+            logger.error(f"error during get_current_dashboard: {e}")
+            return ""
+        
+    async def set_dashboard(self, dashboard_path):
+        try:
+            return dashboard.set_dashboard(dashboard_path)
+        except Exception as e:
+            logger.error(f"error during set_dashboard: {e}")
+            return False
