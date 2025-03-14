@@ -50,10 +50,7 @@ jobs:
           wget -O yacd-meta.zip https://github.com/MetaCubeX/yacd/archive/gh-pages.zip
           unzip yacd-meta.zip
           mv Yacd-meta-gh-pages web/yacd-meta
-          # metacubexd
-          wget -O metacubexd.zip https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip
-          unzip metacubexd.zip
-          mv metacubexd-gh-pages web/metacubexd
+
           # zashboard
           wget -O zashboard.zip https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
           unzip zashboard.zip

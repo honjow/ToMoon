@@ -84,7 +84,6 @@ download_dashboard:
 
 	$(MAKE) download_yacd
 	$(MAKE) download_yacd_meta
-	$(MAKE) download_metacubexd
 	$(MAKE) download_zashboard
 
 	@echo "clean tmp"
